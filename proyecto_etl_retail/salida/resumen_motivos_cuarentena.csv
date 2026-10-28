@@ -1,0 +1,3 @@
+campo,causa,registros
+es_huerfano,llave huérfana: el id_producto no existe en el catálogo maestro,60
+email,correo con formato inválido,28

@@ -1,0 +1,285 @@
+{
+  "estado": "OK",
+  "errores": [],
+  "advertencias": [],
+  "fuentes": {
+    "fisica": {
+      "ruta": "datasets/ventas_tienda_fisica.csv",
+      "columnas_renombradas": {
+        "id_ticket": "id_venta",
+        "fecha_venta": "fecha",
+        "monto_total_mxn": "monto_total"
+      },
+      "perfil_antes": {
+        "fuente": "fisica",
+        "filas": 620,
+        "columnas": 9,
+        "duplicados_exactos": 20,
+        "pct_duplicados_exactos": 3.23,
+        "duplicados_id_venta": 20,
+        "filas_con_algun_faltante": 153,
+        "completitud_global_pct": 97.15
+      },
+      "perfil_despues": {
+        "fuente": "fisica",
+        "filas": 589,
+        "columnas": 11,
+        "duplicados_exactos": 0,
+        "pct_duplicados_exactos": 0.0,
+        "duplicados_id_venta": 0,
+        "filas_con_algun_faltante": 0,
+        "completitud_global_pct": 100.0
+      },
+      "bitacora": {
+        "fuente": "fisica",
+        "filas_entrada": 620,
+        "advertencias": [
+          "La fuente no trae columna de moneda: se asumió 'MXN' para todos los registros.",
+          "La fuente no trae la columna 'email': se etiquetó 'ANONIMO' en todas las filas."
+        ],
+        "pseudo_nulos_convertidos_a_nulo": 0,
+        "numericos_ilegibles_a_nulo": 0,
+        "duplicados_exactos_eliminados": 20,
+        "cantidad_no_positiva_eliminadas": 11,
+        "precio_unitario_no_positivo_a_nulo": 0,
+        "monto_total_no_positivo_a_nulo": 0,
+        "monto_total_recalculado": 31,
+        "precio_unitario_recalculado": 0,
+        "cantidad_recalculada": 0,
+        "id_cliente_anonimo": 121,
+        "email_columna_ausente_en_fuente": 589,
+        "id_venta_nulo_sin_imputar": 0,
+        "id_producto_nulo_sin_imputar": 0,
+        "fecha_nulo_sin_imputar": 0,
+        "monto_incoherente_recalculado": 0,
+        "monto_difiere_de_cantidad_x_precio": 34,
+        "cantidad_capeados": 13,
+        "precio_unitario_outliers_detectados_sin_recortar": 0,
+        "monto_total_capeados": 34,
+        "filas_descartadas": 31,
+        "filas_salida": 589
+      },
+      "faltantes_clasificacion": [
+        {
+          "columna": "monto_total",
+          "faltantes": 32,
+          "pct_faltantes": 5.16,
+          "clasificacion": "MCAR",
+          "variable_asociada": "",
+          "prueba": "Chi-cuadrada",
+          "p_ajustado": 1.0,
+          "pruebas_realizadas": 4,
+          "recalculables_desde_otras_columnas": 32,
+          "estrategia": "1) Recalcular con cantidad*precio_unitario=monto_total; 2) mediana (por producto/moneda -> global)"
+        },
+        {
+          "columna": "id_cliente",
+          "faltantes": 127,
+          "pct_faltantes": 20.48,
+          "clasificacion": "MCAR",
+          "variable_asociada": "",
+          "prueba": "Mann-Whitney U",
+          "p_ajustado": 0.39926,
+          "pruebas_realizadas": 5,
+          "recalculables_desde_otras_columnas": 0,
+          "estrategia": "Etiqueta controlada 'ANONIMO'"
+        }
+      ]
+    },
+    "online": {
+      "ruta": "datasets/ventas_online.json",
+      "columnas_renombradas": {
+        "order_id": "id_venta",
+        "order_timestamp": "fecha",
+        "product_id": "id_producto",
+        "units": "cantidad",
+        "currency": "moneda",
+        "unit_price": "precio_unitario",
+        "total_amount": "monto_total",
+        "customer_email": "email",
+        "shipping_address": "direccion_envio",
+        "order_status": "estatus_pedido",
+        "payment_gateway": "metodo_pago"
+      },
+      "perfil_antes": {
+        "fuente": "online",
+        "filas": 600,
+        "columnas": 11,
+        "duplicados_exactos": 0,
+        "pct_duplicados_exactos": 0.0,
+        "duplicados_id_venta": 0,
+        "filas_con_algun_faltante": 92,
+        "completitud_global_pct": 98.53
+      },
+      "perfil_despues": {
+        "fuente": "online",
+        "filas": 600,
+        "columnas": 11,
+        "duplicados_exactos": 0,
+        "pct_duplicados_exactos": 0.0,
+        "duplicados_id_venta": 0,
+        "filas_con_algun_faltante": 0,
+        "completitud_global_pct": 100.0
+      },
+      "bitacora": {
+        "fuente": "online",
+        "filas_entrada": 600,
+        "advertencias": [
+          "La fuente no trae la columna 'id_cliente': se etiquetó 'ANONIMO' en todas las filas."
+        ],
+        "columnas_fuera_de_esquema_omitidas": [
+          "direccion_envio"
+        ],
+        "pseudo_nulos_convertidos_a_nulo": 5,
+        "numericos_ilegibles_a_nulo": 0,
+        "duplicados_exactos_eliminados": 0,
+        "cantidad_no_positiva_eliminadas": 0,
+        "precio_unitario_no_positivo_a_nulo": 0,
+        "monto_total_no_positivo_a_nulo": 0,
+        "moneda_asignada_por_defecto": 0,
+        "monto_total_recalculado": 0,
+        "precio_unitario_recalculado": 0,
+        "cantidad_recalculada": 0,
+        "id_cliente_columna_ausente_en_fuente": 600,
+        "email_anonimo": 20,
+        "id_venta_nulo_sin_imputar": 0,
+        "id_producto_nulo_sin_imputar": 0,
+        "fecha_nulo_sin_imputar": 0,
+        "monto_incoherente_recalculado": 12,
+        "monto_difiere_de_cantidad_x_precio": 44,
+        "cantidad_capeados": 0,
+        "precio_unitario_outliers_detectados_sin_recortar": 0,
+        "monto_total_capeados": 44,
+        "filas_descartadas": 0,
+        "filas_salida": 600
+      },
+      "faltantes_clasificacion": [
+        {
+          "columna": "email",
+          "faltantes": 20,
+          "pct_faltantes": 3.33,
+          "clasificacion": "MCAR",
+          "variable_asociada": "",
+          "prueba": "Mann-Whitney U",
+          "p_ajustado": 1.0,
+          "pruebas_realizadas": 6,
+          "recalculables_desde_otras_columnas": 0,
+          "estrategia": "Etiqueta controlada 'ANONIMO'"
+        },
+        {
+          "columna": "direccion_envio",
+          "faltantes": 77,
+          "pct_faltantes": 12.83,
+          "clasificacion": "MCAR",
+          "variable_asociada": "",
+          "prueba": "Chi-cuadrada",
+          "p_ajustado": 1.0,
+          "pruebas_realizadas": 6,
+          "recalculables_desde_otras_columnas": 0,
+          "estrategia": "Etiqueta controlada 'DESCONOCIDO'"
+        }
+      ]
+    }
+  },
+  "datos_demo": false,
+  "parametros": {
+    "tasa_usd_mxn": 19.5,
+    "factor_iqr": 1.5
+  },
+  "catalogo": {
+    "registros_entrada": 50,
+    "ids_nulos": 0,
+    "ids_duplicados": 0,
+    "registros_salida": 50
+  },
+  "integracion": {
+    "filas_unificadas": 1189,
+    "fechas": {
+      "filas": 1189,
+      "iso": 589,
+      "epoch": 208,
+      "dmy": 392,
+      "otro_formato_valido": 0,
+      "nulas": 0,
+      "imposibles": 0,
+      "formato_no_reconocido": 0,
+      "dmy_ambiguas_dia_y_mes_le_12": 209
+    },
+    "moneda": {
+      "tasa_usd_mxn": 19.5,
+      "filas_usd_convertidas": 193,
+      "monedas_no_reconocidas": 0
+    },
+    "catalogo": {
+      "filas": 1189,
+      "huerfanos": 60,
+      "huerfanos_llave_nula": 0,
+      "productos_distintos_huerfanos": 51
+    },
+    "minmax": {
+      "columna": "monto_total",
+      "minimo": 332.67,
+      "maximo": 16256.27
+    },
+    "segmentos": {
+      "metodo": "terciles (cuantiles 33.3 % y 66.7 %)",
+      "corte_bajo_medio": 2012.82,
+      "corte_medio_alto": 4097.96,
+      "conteo": {
+        "Bajo": 399,
+        "Medio": 396,
+        "Alto": 394
+      }
+    }
+  },
+  "validacion": {
+    "entrada": 1189,
+    "validos": 1104,
+    "cuarentena": 85,
+    "pct_cuarentena": 7.15,
+    "motivos_top": [
+      {
+        "campo": "es_huerfano",
+        "causa": "llave huérfana: el id_producto no existe en el catálogo maestro",
+        "registros": 60
+      },
+      {
+        "campo": "email",
+        "causa": "correo con formato inválido",
+        "registros": 28
+      }
+    ]
+  },
+  "carga": {
+    "insertados_limpias": 1104,
+    "insertados_cuarentena": 85,
+    "rechazados_por_bd": 0,
+    "fecha_carga": "2026-10-27T21:56:20+00:00"
+  },
+  "bd": {
+    "filas_transacciones_limpias": 1104,
+    "filas_cuarentena_errores": 85,
+    "integrity_check": "ok",
+    "monto_total_mxn": 4700386.25,
+    "por_fuente": {
+      "fisica": 562,
+      "online": 542
+    },
+    "por_segmento": {
+      "Alto": 391,
+      "Bajo": 335,
+      "Medio": 378
+    },
+    "cuarentena_por_etapa": {
+      "VALIDACION_PYDANTIC": 85
+    }
+  },
+  "reconciliacion": {
+    "filas_entrada": 1220,
+    "descartadas_ing1": 31,
+    "en_transacciones_limpias": 1104,
+    "en_cuarentena_errores": 85,
+    "cuadra": true
+  },
+  "duracion_segundos": 4.45
+}
